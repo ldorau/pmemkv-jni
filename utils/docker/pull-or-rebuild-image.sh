@@ -117,6 +117,8 @@ for file in $files; do echo $file; done
 images_dir_name=images
 base_dir=utils/docker/$images_dir_name
 
+files=utils/docker/images/pull-or-rebuild-image.sh
+
 # Check if committed file modifications require the Docker image to be rebuilt
 for file in $files; do
 	# Check if modified files are relevant to the current build
@@ -142,7 +144,8 @@ for file in $files; do
 			echo "The image will be pushed to Docker Hub"
 			touch push_image_to_repo_flag
 		else
-			echo "Skip pushing the image to Docker Hub"
+			echo "The image will be pushed to Docker Hub"
+			touch push_image_to_repo_flag
 		fi
 
 		if [[ $PUSH_IMAGE == "1" ]]
